@@ -15,3 +15,4 @@ addnode(bt(Left1,Root1,Right1),X1,bt(Left1,Root1,NewRight1)) :- addnode(Right1,X
 %tests for other(Above)
 %insert(8,bTree(1,bTree(2,bTree(4,nil,nil),bTree(5,nil,nil)),bTree(3,nil,bTree(6,bTree(7,nil,nil),nil))),result).
 preorder(bTree(1,btree(2,bTree(4,bTree(7,nil,nil)),nil),bTree(5,nil,nil),btree(3,bTree(6,bTree(8,nil,nil),bTree(9,nil,nil),nil))),[1,2,4,7,5,3,6,8,9])
+insert(4,bTree(1,bTree(2,nil,nil),bTree(3,nil,nil)),bTree(1,bTree(2,nil,nil),bTree(3,bTree(4,nil,nil),nil))).

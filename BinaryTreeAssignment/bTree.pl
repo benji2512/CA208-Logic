@@ -13,7 +13,7 @@ bTree(N,T1,T2) :-
 search(bTree(X,_,_),X).
 search(bTree(Root,Left,_),X) :-
    X =< Root,
-   search(Left,X), !.
+   search(Left,X).
 search(bTree(_,_,Right),X) :-
    search(Right,X).
 
@@ -27,9 +27,22 @@ insert(X,bTree(Root,Left,Right),bTree(Root,Left,NewRight)) :-
    insert(X,Right,NewRight).
 
 %Preorder Traversal -> Left Tree First then right tree
-preorder(bTree(X,nil,nil),[X]).
-preorder(bTree(X,Left,Right),Nodes) :-
-   preorder(Left,N1),
-   append(N1,[X],Temp), !,
-   preorder(Right,N2),
-   append(Temp,N2,Nodes).
+preorder(bTree(X,Left,Right),[X|Nodes]) :-
+   preorder(Left,LeftNodes),
+   preorder(Right,RightNodes),
+   append(LeftNodes,RightNodes,Nodes).
+preorder(nil,[]).
+
+%Inorder Traversal ->
+inorder(nil,[]).
+inorder(bTree(X,Left,Right),Nodes) :-
+   inorder(Left,LeftNodes),
+   inorder(Right,RightNodes),
+   append(LeftNodes,[X|RightNodes],Nodes).
+
+%Height of Binary tree
+height(bTree(_,nil,nil),1).
+height(bTree(_,Left,Right),TotalHeight) :-
+    height(Left,TotalLeft),
+    height(Right,TotalRight),
+    TotalHeight is max(TotalLeft,TotalRight) + 1.
